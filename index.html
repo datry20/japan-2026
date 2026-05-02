@@ -691,8 +691,16 @@ function getWikiImage(wikiTitle, size, callback) {
       const pages = data && data.query && data.query.pages;
       const page  = pages && Object.values(pages)[0];
       const src   = (page && page.thumbnail && page.thumbnail.source) || null;
-      imgCache[baseKey] = src;
-      callback(src);
+      if (src) { imgCache[baseKey] = src; callback(src); return; }
+      // Fallback: REST API per pagine senza pageimage impostato
+      return fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(wikiTitle.replace(/ /g, '_')))
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+          const fallback = (d && d.thumbnail && d.thumbnail.source) || null;
+          const sized = fallback ? fallback.replace(/\/\d+px-/, '/' + size + 'px-') : null;
+          imgCache[baseKey] = sized;
+          callback(sized);
+        });
     })
     .catch(() => { imgCache[baseKey] = null; callback(null); });
 }
