@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giappone — Maggio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e0d0b;--ink2:#1c1a16;--ink3:#2e2b24;--paper:#f5f0e8;--paper2:#ede7d8;--torii:#c94a2a;--torii2:#e8633e;--gold:#c9a84c;--gold2:#e2c97a;--sage:#6b7f5e;--muted:#8a8070;--muted2:#b0a898;--border:rgba(201,168,76,0.18)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--ink2)}::-webkit-scrollbar-thumb{background:var(--torii);border-radius:2px}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:4rem 2rem}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(201,74,42,.14) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 20% 20%,rgba(201,168,76,.05) 0%,transparent 60%),var(--ink)}
+.hero-torii{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:900px;opacity:.06;pointer-events:none}
+.hero-kana{font-family:'Noto Sans JP',sans-serif;font-size:clamp(3rem,12vw,9rem);letter-spacing:.3em;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.2);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none}
+.hero-content{position:relative;z-index:2;text-align:center}
+.hero-label{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.25em;color:var(--torii2);text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s .3s ease forwards}
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.5rem,9vw,7rem);line-height:1;margin-bottom:.5rem;opacity:0;animation:fadeUp 1s .5s ease forwards}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.4rem);color:var(--muted2);letter-spacing:.1em;margin-bottom:3rem;opacity:0;animation:fadeUp 1s .7s ease forwards}
+.hero-meta{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;opacity:0;animation:fadeUp 1s .9s ease forwards}
+.hero-meta-val{display:block;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);line-height:1}
+.hero-meta-label{font-size:.65rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.hero-cities{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s 1.1s ease forwards}
+.hero-city{font-family:'DM Mono',monospace;font-size:.65rem;padding:.3rem .9rem;border:1px solid var(--border);border-radius:2px;color:var(--muted2);letter-spacing:.15em;text-transform:uppercase;background:rgba(255,255,255,.02)}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:0;animation:fadeUp 1s 1.5s ease forwards}
+.scroll-hint span{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--torii),transparent);animation:scrollLine 1.5s ease-in-out infinite}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(14,13,11,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:.25rem;overflow-x:auto;scrollbar-width:none;padding:.75rem 2rem}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);white-space:nowrap;margin-right:1.5rem;flex-shrink:0}
+.nav-btn{background:none;border:none;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:.4rem .85rem;border-radius:2px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:color .2s,background .2s}
+.nav-btn:hover,.nav-btn.active{color:var(--gold);background:rgba(201,168,76,.08)}
+
+/* LAYOUT */
+.section{max-width:1200px;margin:0 auto;padding:5rem 2rem}
+.phase-header{display:flex;align-items:flex-start;gap:2rem;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.phase-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:var(--ink3);line-height:1;flex-shrink:0;-webkit-text-stroke:1px var(--border)}
+.phase-info{flex:1}
+.phase-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--torii2);margin-bottom:.4rem}
+.phase-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;line-height:1;margin-bottom:.5rem}
+.phase-name em{font-style:italic;color:var(--gold)}
+.phase-desc{font-size:.85rem;color:var(--muted2);max-width:500px}
+.hotel-strip{display:flex;align-items:flex-start;gap:1.5rem;padding:1.25rem 1.5rem;border:1px solid var(--border);border-left:3px solid var(--torii);border-radius:0 4px 4px 0;background:rgba(255,255,255,.02);margin-bottom:3rem;flex-wrap:wrap}
+.hotel-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+.hotel-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--paper);margin-bottom:.2rem}
+.hotel-address{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:.3rem}
+.hotel-timing{font-size:.75rem;color:var(--torii2)}
+
+/* PLACE CARDS */
+.places-title{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.places-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-bottom:3rem}
+.place-card{position:relative;border-radius:6px;overflow:hidden;cursor:pointer;aspect-ratio:4/3;background:var(--ink2);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;opacity:0;transform:translateY(16px);outline:none}
+.place-card:focus-visible{box-shadow:0 0 0 2px var(--gold);border-color:var(--gold)}
+.place-card.visible{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease,box-shadow .3s}
+.place-card:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 16px 48px rgba(0,0,0,.6),0 0 0 1px rgba(201,168,76,.25)}
+.place-card:hover .place-overlay{opacity:1}
+.place-card:hover .place-img{transform:scale(1.06)}
+.place-img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;display:block;position:absolute;inset:0}
+.place-skeleton{position:absolute;inset:0;background:linear-gradient(110deg,var(--ink2) 30%,var(--ink3) 50%,var(--ink2) 70%);background-size:200% 100%;animation:skeleton 1.4s ease infinite}
+.place-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.1) 60%,transparent 100%);opacity:.75;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:.85rem}
+.place-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:#fff;line-height:1.2;margin-bottom:.25rem}
+.place-meta{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.6);letter-spacing:.06em}
+.place-badge{position:absolute;top:.6rem;right:.6rem;background:rgba(201,168,76,.92);color:var(--ink);font-family:'DM Mono',monospace;font-size:.55rem;padding:2px 6px;border-radius:2px;letter-spacing:.05em}
+.place-maps-pin{position:absolute;top:.6rem;left:.6rem;background:rgba(0,0,0,.55);color:#fff;font-size:.65rem;padding:3px 7px;border-radius:10px;font-family:'DM Mono',monospace;letter-spacing:.05em;opacity:0;transition:opacity .2s}
+.place-card:hover .place-maps-pin{opacity:1}
+
+/* DAY CARDS */
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem;margin-bottom:2rem}
+.day-card{background:var(--ink2);border:1px solid var(--border);border-radius:6px;overflow:hidden;opacity:0;transform:translateY(20px)}
+.day-card.visible{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+.day-card-header{padding:1.1rem 1.4rem .9rem;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:.75rem}
+.day-date-badge{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--torii2);text-transform:uppercase;flex-shrink:0}
+.day-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--paper);line-height:1.2}
+
+/* TIMELINE */
+.timeline{padding:1rem 1.4rem 1.2rem}
+.tl-item{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.85rem}
+.tl-item:last-child{margin-bottom:0}
+.tl-left{flex-shrink:0;width:48px;text-align:right}
+.tl-time{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);line-height:1.4;padding-top:2px}
+.tl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px;border:1.5px solid var(--ink2)}
+.d-log{background:#888780}.d-cam{background:var(--gold)}.d-food{background:#5b8fc9}.d-temple{background:#9b7fc9}.d-nature{background:var(--sage)}.d-sleep{background:var(--torii)}
+.tl-text{font-size:.8rem;color:var(--muted2);line-height:1.5;flex:1}
+.tl-text strong{color:var(--paper);font-weight:500}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.57rem;padding:1px 5px;border-radius:2px;margin-left:4px;letter-spacing:.04em;vertical-align:middle;white-space:nowrap}
+.t-shin{background:rgba(201,74,42,.2);color:var(--torii2);border:1px solid rgba(201,74,42,.3)}
+.t-bus{background:rgba(107,127,94,.2);color:#9ab58d;border:1px solid rgba(107,127,94,.3)}
+.t-loc{background:rgba(91,143,201,.15);color:#8bbde0;border:1px solid rgba(91,143,201,.25)}
+.t-free{background:rgba(155,127,201,.15);color:#c4adea;border:1px solid rgba(155,127,201,.25)}
+.t-cost{background:rgba(201,168,76,.12);color:var(--gold2);border:1px solid var(--border)}
+.callout{padding:.75rem 1rem;font-size:.77rem;border-radius:3px;margin:0 1.4rem .8rem;line-height:1.5}
+.callout-warn{background:rgba(201,74,42,.1);border-left:2px solid var(--torii);color:#e8a898}
+.callout-tip{background:rgba(201,168,76,.06);border-left:2px solid rgba(201,168,76,.35);color:var(--muted2)}
+.section-divider{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:1rem}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider-sym{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--border)}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .4s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(8px)}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:var(--ink2);border:1px solid var(--border);border-radius:10px;max-width:620px;width:100%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;transform:translateY(24px) scale(.96);opacity:0;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .4s cubic-bezier(.4,0,.2,1);box-shadow:0 40px 100px rgba(0,0,0,.6)}
+.modal-bg.open .modal{transform:translateY(0) scale(1);opacity:1}
+.modal-header{position:relative;display:flex;align-items:center;justify-content:flex-end;padding:.75rem 1rem .5rem;border-bottom:1px solid var(--border)}
+.modal-close{background:none;border:1px solid rgba(255,255,255,.15);color:var(--muted2);font-size:1rem;line-height:1;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.modal-close:hover{background:rgba(201,74,42,.7);color:#fff}
+.modal-body{padding:1.5rem;overflow-y:auto}
+.modal-tag{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--torii2);margin-bottom:.4rem}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--paper);margin-bottom:.75rem;line-height:1.15}
+.modal-desc{font-size:.82rem;color:var(--muted2);line-height:1.7;margin-bottom:1.2rem}
+.modal-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.modal-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem 1rem;border-radius:3px;text-decoration:none;transition:background .2s,color .2s;border:1px solid var(--border)}
+.modal-btn-primary{background:var(--torii);color:#fff;border-color:var(--torii)}
+.modal-btn-primary:hover{background:var(--torii2)}
+.modal-btn-sec{background:transparent;color:var(--muted2)}
+.modal-btn-sec:hover{background:rgba(255,255,255,.05);color:var(--paper)}
+.modal-info-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.modal-info-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.modal-info-val{font-size:.82rem;color:var(--paper2)}
+
+/* COSTS */
+.costs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
+.cost-card{background:var(--ink2);border:1px solid var(--border);border-radius:6px;padding:1.5rem;opacity:0;transform:translateY(20px)}
+.cost-card.visible{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+.cost-card-title{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--torii2);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+.cost-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem}
+.cost-row:last-child{border-bottom:none}
+.cost-row-label{color:var(--muted2);flex:1}
+.cost-row-sub{font-size:.68rem;color:var(--muted)}
+.cost-row-val{color:var(--paper);font-weight:500;white-space:nowrap;font-family:'DM Mono',monospace;font-size:.75rem}
+.cost-row-val.free{color:var(--sage)}
+.total-card{background:linear-gradient(135deg,rgba(201,74,42,.12),rgba(201,168,76,.08));border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;opacity:0;transform:translateY(20px)}
+.total-card.visible{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+.total-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.total-val{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--gold);line-height:1}
+.saving-badge{display:inline-block;padding:.4rem .9rem;background:rgba(107,127,94,.2);border:1px solid rgba(107,127,94,.35);border-radius:2px;font-family:'DM Mono',monospace;font-size:.65rem;color:#9ab58d;letter-spacing:.08em}
+
+/* FOOD */
+.food-city{margin-bottom:3.5rem}
+.food-city-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+.food-city-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--paper)}
+.food-city-tagline{font-size:.75rem;color:var(--muted);font-style:italic}
+.food-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.food-item{background:var(--ink2);border:1px solid var(--border);border-radius:6px;padding:1.1rem 1.25rem;transition:border-color .3s,transform .3s;opacity:0;transform:translateY(15px)}
+.food-item.visible{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease,border-color .3s}
+.food-item:hover{border-color:rgba(201,168,76,.3);transform:translateY(-2px)}
+.food-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--paper);margin-bottom:.3rem}
+.food-desc{font-size:.75rem;color:var(--muted2);line-height:1.5;margin-bottom:.5rem}
+.food-price{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--gold)}
+
+/* PRACTICAL */
+.practical-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:2rem}
+.practical-card{background:var(--ink2);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem;opacity:0;transform:translateY(15px)}
+.practical-card.visible{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease}
+.practical-icon{font-size:1.25rem;margin-bottom:.6rem}
+.practical-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--paper);margin-bottom:.5rem}
+.practical-text{font-size:.78rem;color:var(--muted2);line-height:1.6}
+.practical-text a{color:var(--torii2);text-decoration:none}
+.practical-text a:hover{text-decoration:underline}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.15em}
+footer span{color:var(--torii2)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes skeleton{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+@media(max-width:640px){
+  .hero-kana{display:none}
+  .phase-header{flex-direction:column;gap:.5rem}.phase-num{font-size:2.5rem}
+  .day-grid{grid-template-columns:1fr}.costs-grid{grid-template-columns:1fr}
+  .places-grid{grid-template-columns:repeat(2,1fr)}.food-items{grid-template-columns:1fr}
+  .hotel-strip{flex-direction:column;gap:.75rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <svg class="hero-torii" viewBox="0 0 900 420" fill="none">
+    <rect x="100" y="80" width="700" height="22" rx="4" fill="#c94a2a"/>
+    <rect x="140" y="38" width="620" height="16" rx="4" fill="#c94a2a"/>
+    <rect x="94" y="102" width="24" height="318" fill="#c94a2a"/>
+    <rect x="116" y="94" width="42" height="16" rx="3" fill="#c94a2a"/>
+    <rect x="782" y="102" width="24" height="318" fill="#c94a2a"/>
+    <rect x="742" y="94" width="42" height="16" rx="3" fill="#c94a2a"/>
+  </svg>
+  <div class="hero-kana">日本</div>
+  <div class="hero-content">
+    <p class="hero-label">Itinerario di viaggio · Primavera 2026</p>
+    <h1 class="hero-title">Giappone<br><em>Maggio</em></h1>
+    <p class="hero-subtitle">Kyoto · Nara · Osaka · Minoh · Hakone · Tokyo</p>
+    <div class="hero-meta">
+      <div><span class="hero-meta-val">13</span><span class="hero-meta-label">Notti</span></div>
+      <div><span class="hero-meta-val">6</span><span class="hero-meta-label">Destinazioni</span></div>
+      <div><span class="hero-meta-val">~€1.100</span><span class="hero-meta-label">Budget stimato</span></div>
+      <div><span class="hero-meta-val">2</span><span class="hero-meta-label">Shinkansen</span></div>
+    </div>
+    <div class="hero-cities">
+      <span class="hero-city">✈ MXP 12 Mag</span>
+      <span class="hero-city">⛩ Kyoto 13–16</span>
+      <span class="hero-city">🏙 Osaka 16–20</span>
+      <span class="hero-city">🗻 Hakone 21</span>
+      <span class="hero-city">🗼 Tokyo 20–25</span>
+      <span class="hero-city">✈ MXP 26 Mag</span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scorri</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-logo">日本</span>
+    <button class="nav-btn" onclick="goTo('volo-andata')">✈ Andata</button>
+    <button class="nav-btn" onclick="goTo('kyoto')">⛩ Kyoto</button>
+    <button class="nav-btn" onclick="goTo('osaka')">🏙 Osaka</button>
+    <button class="nav-btn" onclick="goTo('tokyo')">🗼 Tokyo</button>
+    <button class="nav-btn" onclick="goTo('costi')">💴 Costi</button>
+    <button class="nav-btn" onclick="goTo('cibo')">🍜 Cibo</button>
+    <button class="nav-btn" onclick="goTo('pratico')">📋 Info</button>
+  </div>
+</nav>
+
+<!-- VOLO ANDATA -->
+<section class="section" id="volo-andata">
+  <div class="phase-header">
+    <div class="phase-num">01</div>
+    <div class="phase-info">
+      <p class="phase-tag">12 – 13 Maggio 2026</p>
+      <h2 class="phase-name">Volo <em>Andata</em></h2>
+      <p class="phase-desc">Milano Malpensa → Taipei → Tokyo Narita → Kyoto. Una lunga giornata di transito: arrivo a Kyoto la sera del 13.</p>
+    </div>
+  </div>
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Mar 12 Mag</span><span class="day-title">Milano → Taipei</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">11:15</span></div><span class="tl-dot d-log"></span><span class="tl-text">Partenza <strong>Milano Malpensa</strong></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">+1 05:55</span></div><span class="tl-dot d-log"></span><span class="tl-text">Arrivo <strong>Taipei Taoyuan</strong> — scalo notturno</span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Mer 13 Mag</span><span class="day-title">Taipei → Narita → Kyoto</span></div>
+      <div class="callout callout-warn">Giornata di transito — niente soste. Obiettivo: check-in Kyoto entro le 18:00.</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:00</span></div><span class="tl-dot d-log"></span><span class="tl-text">Partenza <strong>Taipei</strong> → Narita</span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">13:25</span></div><span class="tl-dot d-log"></span><span class="tl-text">Arrivo <strong>Narita</strong> — dogana (~45 min)</span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">14:30</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Narita Express</strong> → Tokyo Station (~75 min)<span class="tag t-loc">~€19</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">15:45</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Shinkansen Nozomi</strong> Tokyo → Kyoto (~2h15)<span class="tag t-shin">~€83</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">~18:00</span></div><span class="tl-dot d-log"></span><span class="tl-text">Arrivo <strong>Kyoto Station</strong> — hotel a 5 min</span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">18:30</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena ramen vicino alla stazione<span class="tag t-cost">€8–12</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">20:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text">Passeggiata <strong>Gion</strong> di sera<span class="tag t-free">Gratuito</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-sym">✦</span></div>
+
+<!-- KYOTO -->
+<section class="section" id="kyoto">
+  <div class="phase-header">
+    <div class="phase-num">02</div>
+    <div class="phase-info">
+      <p class="phase-tag">13 – 16 Maggio · 3 Notti</p>
+      <h2 class="phase-name"><em>Kyoto</em></h2>
+      <p class="phase-desc">Capitale dell'anima giapponese. Templi zen, mercati antichi, geisha a Gion e i torii di Fushimi Inari all'alba.</p>
+    </div>
+  </div>
+  <div class="hotel-strip">
+    <span class="hotel-icon">🏨</span>
+    <div>
+      <div class="hotel-name">BON Kyoto Station</div>
+      <div class="hotel-address">2 Nishikujō Ikenouchichō, Minami-ku, Kyoto 601-8416</div>
+      <div class="hotel-timing">Check-in Mer 13 dopo le 16:00 · Check-out Sab 16 entro le 10:00</div>
+    </div>
+  </div>
+  <p class="places-title">Luoghi da visitare — clicca per dettagli e mappa</p>
+  <div class="places-grid" id="kyoto-places">
+    <div class="place-card" data-id="arashiyama"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Foresta di bambù</div><div class="place-meta">📍 Arashiyama</div></div><div class="place-badge">Gio 14 · 07:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="tenryuji"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Tenryu-ji</div><div class="place-meta">📍 Arashiyama</div></div><div class="place-badge">Gio 14 · 08:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="kinkakuji"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Kinkakuji</div><div class="place-meta">📍 Padiglione d'oro</div></div><div class="place-badge">Gio 14 · 13:15</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="fushimi"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Fushimi Inari</div><div class="place-meta">📍 Mille torii</div></div><div class="place-badge">Ven 15 · 06:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="nishiki"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Nishiki Market</div><div class="place-meta">📍 La cucina di Kyoto</div></div><div class="place-badge">Ven 15 · 09:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="kiyomizudera"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Kiyomizu-dera</div><div class="place-meta">📍 Tempio sulla roccia</div></div><div class="place-badge">Ven 15 · 11:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+  </div>
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Gio 14 Mag</span><span class="day-title">Arashiyama & Kinkakuji</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">06:30</span></div><span class="tl-dot d-log"></span><span class="tl-text">Bus → <strong>Arashiyama</strong><span class="tag t-loc">Suica ~€1.5</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">07:00</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Foresta di bambù</strong> all'alba — luce perfetta, nessuna folla<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">08:00</span></div><span class="tl-dot d-temple"></span><span class="tl-text"><strong>Tenryu-ji</strong> e giardino zen (~1h)<span class="tag t-cost">€3</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text">Togetsukyo Bridge e fiume Oi<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">11:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Pranzo: <strong>yudofu</strong> o street food<span class="tag t-cost">€10–15</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">13:15</span></div><span class="tl-dot d-temple"></span><span class="tl-text"><strong>Kinkakuji</strong> — Padiglione d'oro<span class="tag t-cost">€3</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena izakaya a <strong>Kawaramachi</strong><span class="tag t-cost">€20–30</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Ven 15 Mag</span><span class="day-title">Fushimi Inari & Kiyomizudera</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">05:45</span></div><span class="tl-dot d-log"></span><span class="tl-text">JR Nara Line → <strong>Fushimi Inari</strong><span class="tag t-loc">Suica ~€1</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">06:00</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Fushimi Inari</strong> all'alba — torii senza folla (~2h)<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Colazione al <strong>Nishiki Market</strong><span class="tag t-cost">€5–8</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">11:00</span></div><span class="tl-dot d-temple"></span><span class="tl-text"><strong>Kiyomizu-dera</strong> + Ninenzaka (~2h)<span class="tag t-cost">€3</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:30</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena <strong>kaiseki</strong> a Pontocho Alley<span class="tag t-cost">€30–50</span></span></div>
+      </div>
+      <div class="callout callout-tip">Ultima notte a Kyoto — check-out sabato entro le 10:00</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-sym">✦</span></div>
+
+<!-- OSAKA -->
+<section class="section" id="osaka">
+  <div class="phase-header">
+    <div class="phase-num">03</div>
+    <div class="phase-info">
+      <p class="phase-tag">16 – 20 Maggio · 4 Notti</p>
+      <h2 class="phase-name"><em>Osaka</em> + Nara + Minoh</h2>
+      <p class="phase-desc">La capitale del cibo di strada e del neon. Gita ai cervi sacri di Nara e alla cascata di Minoh tra i boschi.</p>
+    </div>
+  </div>
+  <div class="hotel-strip">
+    <span class="hotel-icon">🏢</span>
+    <div>
+      <div class="hotel-name">Apartment Hotel 11 Nambaminami 2</div>
+      <div class="hotel-address">大国1-2-22, Osaka, Osaka 556-0014</div>
+      <div class="hotel-timing">Check-in Sab 16 dopo le 16:00 · Check-out Mer 20 entro le 10:00</div>
+    </div>
+  </div>
+  <p class="places-title">Luoghi da visitare — clicca per dettagli e mappa</p>
+  <div class="places-grid">
+    <div class="place-card" data-id="nara"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Nara Park</div><div class="place-meta">📍 Cervi sacri</div></div><div class="place-badge">Sab 16 · 10:50</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="todaiji"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Todai-ji</div><div class="place-meta">📍 Nara</div></div><div class="place-badge">Sab 16 · 11:30</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="osaka_castle"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Osaka Castle</div><div class="place-meta">📍 Osaka</div></div><div class="place-badge">Dom 17 · 09:30</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="dotonbori"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Dotonbori</div><div class="place-meta">📍 Osaka</div></div><div class="place-badge">Lun 18 · 08:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="minoh_waterfall"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Cascata di Minoh</div><div class="place-meta">📍 Minoh · Osaka</div></div><div class="place-badge">Mar 19 · 10:30</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="minoh_town"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Minoh — Negozietti</div><div class="place-meta">📍 Momiji tempura</div></div><div class="place-badge">Mar 19 · 12:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+  </div>
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Sab 16 Mag</span><span class="day-title">Kyoto → Nara → Osaka</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:00</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Kintetsu</strong> Kyoto → Nara (~45 min)<span class="tag t-loc">€4</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:50</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Cervi sacri</strong> nel parco di Nara<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">11:30</span></div><span class="tl-dot d-temple"></span><span class="tl-text"><strong>Todai-ji</strong> — Grande Buddha (~1h)<span class="tag t-cost">€4</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">13:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Pranzo: <strong>kakinoha-zushi</strong><span class="tag t-cost">€10–12</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">15:15</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Kintetsu</strong> Nara → Osaka Namba<span class="tag t-loc">€5</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena <strong>Dotonbori</strong>: takoyaki + okonomiyaki<span class="tag t-cost">€12–18</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Dom 17 Mag</span><span class="day-title">Osaka Castle & Shinsekai</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Osaka Castle</strong> e parco (~2h)<span class="tag t-cost">€4</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">12:00</span></div><span class="tl-dot d-food"></span><span class="tl-text"><strong>Kuromon Market</strong>: pesce fresco<span class="tag t-cost">€10–15</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">14:00</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Shinsekai</strong> e torre Tsutenkaku<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena: <strong>kushikatsu</strong><span class="tag t-cost">€15–25</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Lun 18 Mag</span><span class="day-title">Shinsaibashi & Umeda</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">08:00</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Dotonbori Canal</strong> — luce ottima per le foto<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:00</span></div><span class="tl-dot d-food"></span><span class="tl-text"><strong>Shinsaibashi</strong>: shopping e street food<span class="tag t-cost">€8–15</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">15:00</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Umeda Sky Building</strong><span class="tag t-cost">€10</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:30</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena izakaya a Namba<span class="tag t-cost">€20–30</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Mar 19 Mag</span><span class="day-title">Gita a Minoh</span></div>
+      <div class="callout callout-tip">Hankyu da Umeda → Minoh (~30 min). Linea Hankyu Minoh, €2.50 a tratta.</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:00</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Hankyu</strong> Umeda → Minoh (~30 min)<span class="tag t-loc">~€2.50</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:30</span></div><span class="tl-dot d-nature"></span><span class="tl-text"><strong>Minoh Waterfall Trail</strong> — 2.7 km nel bosco<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Cascata Minoh-otaki</strong> (33 m) — foto<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">11:30</span></div><span class="tl-dot d-food"></span><span class="tl-text">Negozietti: assaggia le <strong>momiji no tempura</strong><span class="tag t-cost">€1–2</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">12:30</span></div><span class="tl-dot d-food"></span><span class="tl-text">Pranzo in un tofu restaurant locale<span class="tag t-cost">€8–12</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">15:30</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Hankyu</strong> Minoh → Umeda, rientro Osaka<span class="tag t-loc">~€2.50</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">18:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Ultima cena Osaka: <strong>kushikatsu</strong> a Shinsekai<span class="tag t-cost">€15–20</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-sym">✦</span></div>
+
+<!-- TOKYO -->
+<section class="section" id="tokyo">
+  <div class="phase-header">
+    <div class="phase-num">04</div>
+    <div class="phase-info">
+      <p class="phase-tag">20 – 25 Maggio · 5 Notti</p>
+      <h2 class="phase-name"><em>Tokyo</em> + Hakone</h2>
+      <p class="phase-desc">Il Fuji in mattinata, i vicoli di Yanaka, Shibuya e TeamLab. Tokyo non finisce mai.</p>
+    </div>
+  </div>
+  <div class="hotel-strip">
+    <span class="hotel-icon">🏠</span>
+    <div>
+      <div class="hotel-name">Appartamento Yuri & Co. — Nakano City</div>
+      <div class="hotel-address">1 Chome-30-5 Yayoicho, 102 Luce Nishi-Shinjuku, Nakano City, Tokyo 164-0013</div>
+      <div class="hotel-timing">Check-in Mer 20 dopo le 16:00 · Check-out Lun 25 entro le 11:00</div>
+    </div>
+  </div>
+  <p class="places-title">Luoghi da visitare — clicca per dettagli e mappa</p>
+  <div class="places-grid">
+    <div class="place-card" data-id="chureito"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Chureito Pagoda</div><div class="place-meta">📍 Fujiyoshida · Fuji</div></div><div class="place-badge">Gio 21 · 09:30</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="owakudani"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Owakudani</div><div class="place-meta">📍 Hakone · Vulcano</div></div><div class="place-badge">Gio 21 · 14:15</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="sensoji"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Senso-ji</div><div class="place-meta">📍 Asakusa · Tokyo</div></div><div class="place-badge">Ven 22 · 08:30</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="meiji"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Meiji Jingu</div><div class="place-meta">📍 Harajuku · Tokyo</div></div><div class="place-badge">Sab 23 · 13:00</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="shibuya"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">Shibuya Crossing</div><div class="place-meta">📍 Shibuya · Tokyo</div></div><div class="place-badge">Sab 23 · 09:30</div><div class="place-maps-pin">🗺 Mappa</div></div>
+    <div class="place-card" data-id="teamlab"><div class="place-skeleton"></div><div class="place-overlay"><div class="place-name">TeamLab Planets</div><div class="place-meta">📍 Toyosu · Tokyo</div></div><div class="place-badge">Dom 24 · 10:30</div><div class="place-maps-pin">🗺 Mappa</div></div>
+  </div>
+  <div class="day-grid">
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Mer 20 Mag</span><span class="day-title">Osaka → Tokyo</span></div>
+      <div class="callout callout-tip">Bus Osaka→Tokyo = 8-9h. Shinkansen necessario per il check-in.</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:00</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Shinkansen Nozomi</strong> Osaka → Tokyo (~2h30)<span class="tag t-shin">~€87</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">12:30</span></div><span class="tl-dot d-log"></span><span class="tl-text">Chuo Line → <strong>Nakano</strong>, check-in<span class="tag t-loc">Suica</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">14:00</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Nakano Broadway</strong> — anime e cultura pop<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Prima cena Tokyo: ramen a Shinjuku<span class="tag t-cost">€8–13</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Gio 21 Mag</span><span class="day-title">Day trip Hakone & Fuji</span></div>
+      <div class="callout callout-tip">Parti presto — le nuvole arrivano nel pomeriggio. Hakone Pass copre tutto.</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">07:00</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Romancecar</strong> Shinjuku → Hakone-Yumoto<span class="tag t-bus">Hakone Pass €40</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Chureito Pagoda</strong> — foto iconica sul Fuji<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">11:00</span></div><span class="tl-dot d-nature"></span><span class="tl-text"><strong>Lago Kawaguchiko</strong> — panorama Fuji<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">14:15</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Owakudani</strong>: fumarole + kuro tamago<span class="tag t-cost">€2</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">15:30</span></div><span class="tl-dot d-nature"></span><span class="tl-text">Battello sul <strong>Lago Ashinoko</strong><span class="tag t-bus">Hakone Pass</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:00</span></div><span class="tl-dot d-log"></span><span class="tl-text">Rientro Shinjuku + cena<span class="tag t-cost">€12–20</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Ven 22 Mag</span><span class="day-title">Asakusa & Yanaka</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">08:30</span></div><span class="tl-dot d-temple"></span><span class="tl-text"><strong>Senso-ji</strong> di prima mattina<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:00</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Nakamise-dori</strong> e canale Sumida<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">13:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Yanaka Ginza</strong> — old Tokyo, perfetto per il Fujifilm<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">20:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena: <strong>Golden Gai</strong> a Shinjuku<span class="tag t-cost">€20–30</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Sab 23 Mag</span><span class="day-title">Shibuya & Harajuku</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">09:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Shibuya Crossing</strong> all'ora di punta<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:15</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Scramble Square</strong> — vista dall'alto<span class="tag t-cost">€13</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">12:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Street food <strong>Takeshita-dori</strong><span class="tag t-cost">€5–10</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">13:00</span></div><span class="tl-dot d-temple"></span><span class="tl-text"><strong>Meiji Jingu</strong> — tempio nella foresta<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">17:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Shibuya Sky</strong> — tramonto<span class="tag t-cost">€13</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:30</span></div><span class="tl-dot d-food"></span><span class="tl-text">Cena: ramen Ichiran o izakaya<span class="tag t-cost">€12–20</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Dom 24 Mag</span><span class="day-title">Tsukiji, TeamLab & Akihabara</span></div>
+      <div class="callout callout-warn">TeamLab Planets: prenota su teamlab.art mesi prima — esaurisce sempre.</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">08:00</span></div><span class="tl-dot d-food"></span><span class="tl-text">Colazione al <strong>Tsukiji</strong>: sushi + tamagoyaki<span class="tag t-cost">€10–15</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>TeamLab Planets</strong> — arte digitale immersiva<span class="tag t-cost">€20</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">14:30</span></div><span class="tl-dot d-cam"></span><span class="tl-text"><strong>Akihabara</strong>: elettronica e anime<span class="tag t-free">Gratuito</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">19:30</span></div><span class="tl-dot d-food"></span><span class="tl-text"><strong>Cena finale</strong>: omakase o yakiniku wagyu<span class="tag t-cost">€40–80</span></span></div>
+      </div>
+    </div>
+    <div class="day-card">
+      <div class="day-card-header"><span class="day-date-badge">Lun 25 Mag</span><span class="day-title">Checkout → Narita → Milano</span></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">07:30</span></div><span class="tl-dot d-food"></span><span class="tl-text">Ultima colazione al konbini<span class="tag t-cost">€4–6</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">10:00</span></div><span class="tl-dot d-log"></span><span class="tl-text">Check-out appartamento (entro le 11:00)</span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">11:15</span></div><span class="tl-dot d-log"></span><span class="tl-text"><strong>Narita Express</strong> da Shinjuku (~80 min)<span class="tag t-loc">~€19</span></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">14:25</span></div><span class="tl-dot d-log"></span><span class="tl-text">Volo <strong>Narita → Taipei → Milano</strong></span></div>
+        <div class="tl-item"><div class="tl-left"><span class="tl-time">+1 07:35</span></div><span class="tl-dot d-sleep"></span><span class="tl-text">Arrivo <strong>Milano Malpensa</strong> — 26 Maggio</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-sym">✦</span></div>
+
+<!-- COSTI -->
+<section class="section" id="costi">
+  <div class="phase-header">
+    <div class="phase-num">05</div>
+    <div class="phase-info">
+      <p class="phase-tag">Budget stimato — esclusi voli e hotel</p>
+      <h2 class="phase-name">I <em>Costi</em></h2>
+      <p class="phase-desc">Senza JR Pass: solo due Shinkansen necessari, bus per Hiroshima, Suica per il resto.</p>
+    </div>
+  </div>
+  <div class="costs-grid">
+    <div class="cost-card">
+      <div class="cost-card-title">Trasporti</div>
+      <div class="cost-row"><span class="cost-row-label">Narita Express A/R</span><span class="cost-row-val">~€38</span></div>
+      <div class="cost-row"><span class="cost-row-label">Shinkansen Tokyo → Kyoto</span><span class="cost-row-val">~€83</span></div>
+      <div class="cost-row"><span class="cost-row-label">Shinkansen Osaka → Tokyo</span><span class="cost-row-val">~€87</span></div>
+      <div class="cost-row"><span class="cost-row-label">Bus Osaka ↔ Hiroshima A/R</span><span class="cost-row-val">~€24</span></div>
+      <div class="cost-row"><span class="cost-row-label">Hakone Free Pass</span><span class="cost-row-val">~€40</span></div>
+      <div class="cost-row"><span class="cost-row-label">Kintetsu Kyoto-Nara-Osaka</span><span class="cost-row-val">~€9</span></div>
+      <div class="cost-row"><span class="cost-row-label">Suica + metro locale</span><span class="cost-row-val">~€70</span></div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-card-title">Attrazioni</div>
+      <div class="cost-row"><span class="cost-row-label">TeamLab Planets</span><span class="cost-row-val">~€20</span></div>
+      <div class="cost-row"><span class="cost-row-label">Shibuya Sky</span><span class="cost-row-val">~€13</span></div>
+      <div class="cost-row"><span class="cost-row-label">Umeda Sky Building</span><span class="cost-row-val">~€10</span></div>
+      <div class="cost-row"><span class="cost-row-label">Kinkakuji + Kiyomizudera + Tenryuji</span><span class="cost-row-val">~€9</span></div>
+      <div class="cost-row"><span class="cost-row-label">Todaiji + Osaka Castle</span><span class="cost-row-val">~€8</span></div>
+      <div class="cost-row"><span class="cost-row-label">Peace Museum Hiroshima</span><span class="cost-row-val">~€2</span></div>
+      <div class="cost-row"><span class="cost-row-label">Fushimi Inari, Gion, Fuji…</span><span class="cost-row-val free">Gratuito</span></div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-card-title">Cibo stimato</div>
+      <div class="cost-row"><div><div class="cost-row-label">Colazione</div><div class="cost-row-sub">Konbini, bakery, mercati</div></div><span class="cost-row-val">€4–8/gg</span></div>
+      <div class="cost-row"><div><div class="cost-row-label">Pranzo</div><div class="cost-row-sub">Ramen, bowl, street food</div></div><span class="cost-row-val">€8–15/gg</span></div>
+      <div class="cost-row"><div><div class="cost-row-label">Cena</div><div class="cost-row-sub">Izakaya, sushi, yakiniku</div></div><span class="cost-row-val">€20–35/gg</span></div>
+      <div class="cost-row"><div><div class="cost-row-label">Cene speciali</div><div class="cost-row-sub">Kaiseki, omakase, premium</div></div><span class="cost-row-val">€100–200 tot.</span></div>
+    </div>
+  </div>
+  <div class="total-card">
+    <div>
+      <div class="total-label">Totale stimato per persona</div>
+      <div class="total-val">€1.043 – €1.193</div>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:.5rem">Esclusi voli e hotel · 1€ ≈ 160¥</div>
+    </div>
+    <div style="text-align:right">
+      <div class="saving-badge">~€207 risparmiati vs JR Pass</div>
+      <div style="font-size:.7rem;color:var(--muted);margin-top:.6rem">
+        Shinkansen: <a href="https://www.eki-net.com" target="_blank" rel="noopener noreferrer" style="color:var(--torii2)">eki-net.com</a> &nbsp;·&nbsp;
+        Bus: <a href="https://willerexpress.com" target="_blank" rel="noopener noreferrer" style="color:var(--torii2)">willerexpress.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-sym">✦</span></div>
+
+<!-- CIBO -->
+<section class="section" id="cibo">
+  <div class="phase-header">
+    <div class="phase-num">06</div>
+    <div class="phase-info">
+      <p class="phase-tag">Guida gastronomica</p>
+      <h2 class="phase-name">Il <em>Cibo</em></h2>
+      <p class="phase-desc">Dal kaiseki silenzioso di Kyoto al caos fritto di Osaka, passando per i ramen di Tokyo.</p>
+    </div>
+  </div>
+  <div class="food-city">
+    <div class="food-city-header"><span class="food-city-name">⛩ Kyoto</span><span class="food-city-tagline">Cucina raffinata e zen</span></div>
+    <div class="food-items">
+      <div class="food-item"><div class="food-name">Kaiseki 懐石</div><div class="food-desc">Menu degustazione multi-portata. Estetica e stagionalità al centro.</div><div class="food-price">€40–100 a testa</div></div>
+      <div class="food-item"><div class="food-name">Yudofu 湯豆腐</div><div class="food-desc">Tofu bollito in brodo dashi. Specialità dei monasteri zen di Arashiyama.</div><div class="food-price">€10–15</div></div>
+      <div class="food-item"><div class="food-name">Matcha 抹茶</div><div class="food-desc">Latte, parfait, mochi, wagashi. Il migliore da Uji, appena fuori Kyoto.</div><div class="food-price">€3–8</div></div>
+      <div class="food-item"><div class="food-name">Nishiki Market</div><div class="food-desc">250m di bancarelle: tofu fritto, polpi su stecco, tsukemono, dango.</div><div class="food-price">€2–5 a pezzo</div></div>
+    </div>
+  </div>
+  <div class="food-city">
+    <div class="food-city-header"><span class="food-city-name">🏙 Osaka</span><span class="food-city-tagline">Capitale del cibo di strada</span></div>
+    <div class="food-items">
+      <div class="food-item"><div class="food-name">Takoyaki たこ焼き</div><div class="food-desc">Palline di pastella con polpo, mayo e salsa. Il simbolo di Osaka.</div><div class="food-price">€3–6 (8 pezzi)</div></div>
+      <div class="food-item"><div class="food-name">Okonomiyaki お好み焼き</div><div class="food-desc">Pancake salato con cavolo e carne, stile Osaka (ingredienti mischiati) o stile Hiroshima (a strati). Dotonbori è il posto giusto.</div><div class="food-price">€8–14</div></div>
+      <div class="food-item"><div class="food-name">Kushikatsu 串カツ</div><div class="food-desc">Spiedini fritti. Regola d'oro: non intingere due volte nella salsa.</div><div class="food-price">€12–20</div></div>
+      <div class="food-item"><div class="food-name">Kuromon Market</div><div class="food-desc">Ostriche fresche, granchio e frutti di mare su stecco.</div><div class="food-price">€5–15</div></div>
+    </div>
+  </div>
+  <div class="food-city">
+    <div class="food-city-header"><span class="food-city-name">🗻 Hakone</span><span class="food-city-tagline">Sapori vulcanici</span></div>
+    <div class="food-items">
+      <div class="food-item"><div class="food-name">Kuro tamago 黒卵</div><div class="food-desc">Uova bollite nelle sorgenti sulfuree di Owakudani — guscio nero.</div><div class="food-price">€2 (5 uova)</div></div>
+      <div class="food-item"><div class="food-name">Soba di Hakone</div><div class="food-desc">Soba artigianale locale lungo il percorso del Romancecar.</div><div class="food-price">€8–12</div></div>
+    </div>
+  </div>
+  <div class="food-city">
+    <div class="food-city-header"><span class="food-city-name">🗼 Tokyo</span><span class="food-city-tagline">Tutto il mondo in una città</span></div>
+    <div class="food-items">
+      <div class="food-item"><div class="food-name">Ramen ラーメン</div><div class="food-desc">Ogni stile: tonkotsu, shoyu, shio, miso. Ichiran per il box singolo.</div><div class="food-price">€8–13</div></div>
+      <div class="food-item"><div class="food-name">Sushi omakase</div><div class="food-desc">Il chef sceglie i pezzi migliori del giorno. Prenota settimane prima.</div><div class="food-price">€50–150+</div></div>
+      <div class="food-item"><div class="food-name">Tsukiji colazione</div><div class="food-desc">Sushi alle 8, tamagoyaki caldo, granchio fresco al mercato esterno.</div><div class="food-price">€10–18</div></div>
+      <div class="food-item"><div class="food-name">Konbini コンビニ</div><div class="food-desc">7-Eleven, Lawson — onigiri, egg salad, nikuman, dessert. Obbligatorio.</div><div class="food-price">€4–8 a pasto</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span class="divider-sym">✦</span></div>
+
+<!-- PRATICO -->
+<section class="section" id="pratico">
+  <div class="phase-header">
+    <div class="phase-num">07</div>
+    <div class="phase-info">
+      <p class="phase-tag">Da fare prima di partire</p>
+      <h2 class="phase-name">Info <em>pratiche</em></h2>
+      <p class="phase-desc">Tutto ciò che va prenotato, acquistato o installato prima di arrivare in Giappone.</p>
+    </div>
+  </div>
+  <div class="practical-grid">
+    <div class="practical-card"><div class="practical-icon">🎟</div><div class="practical-title">TeamLab Planets</div><div class="practical-text">Prenota subito su <a href="https://teamlab.art" target="_blank" rel="noopener noreferrer">teamlab.art</a> — si esaurisce mesi prima. Dom 24 Mag alle 10:30.</div></div>
+    <div class="practical-card"><div class="practical-icon">🚅</div><div class="practical-title">Shinkansen</div><div class="practical-text">Acquista su <a href="https://www.eki-net.com" target="_blank" rel="noopener noreferrer">eki-net.com</a>. I biglietti si ritirano alle biglietterie automatiche in stazione.</div></div>
+    <div class="practical-card"><div class="practical-icon">🍁</div><div class="practical-title">Gita a Minoh</div><div class="practical-text">Hankyu da Umeda (linea Minoh), ~30 min, ~€2.50 a tratta. Nessuna prenotazione necessaria. Porta scarpe comode per il sentiero. La cascata è a 2.7 km dalla stazione.</div></div>
+    <div class="practical-card"><div class="practical-icon">💳</div><div class="practical-title">Suica Card</div><div class="practical-text">Scarica l'app Suica o acquistala in aeroporto. Metro, bus, treni locali e konbini. Ricarica con contanti o carta.</div></div>
+    <div class="practical-card"><div class="practical-icon">📶</div><div class="practical-title">Internet</div><div class="practical-text">eSIM o Pocket WiFi — acquista prima della partenza. IIJmio o eConnect Japan. In alternativa SIM dati in aeroporto.</div></div>
+    <div class="practical-card"><div class="practical-icon">💴</div><div class="practical-title">Contanti</div><div class="practical-text">Il Giappone usa ancora molto il contante. ATM del 7-Eleven accettano carte estere. Tieni sempre ¥10.000–20.000.</div></div>
+    <div class="practical-card"><div class="practical-icon">📱</div><div class="practical-title">App utili</div><div class="practical-text"><strong>Google Maps</strong> (treni), <strong>Hyperdia</strong> (orari), <strong>Google Translate</strong> con fotocamera, <strong>Tabelog</strong> (ristoranti), <strong>PayPay</strong> (pagamenti).</div></div>
+    <div class="practical-card"><div class="practical-icon">🌸</div><div class="practical-title">Maggio a Kyoto</div><div class="practical-text">I ciliegi sono sfioriti. Si trovano wisteria (glicine) in piena fioritura — bellissima alternativa. Controlla <a href="https://jnto.go.jp" target="_blank" rel="noopener noreferrer">jnto.go.jp</a>.</div></div>
+  </div>
+</section>
+
+<footer><p>Giappone · Maggio 2026 &nbsp;·&nbsp; <span>日本</span> &nbsp;·&nbsp; Buon viaggio 良い旅を</p></footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModalBg(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()" aria-label="Chiudi">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag" id="modal-tag"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-actions" id="modal-actions"></div>
+      <div class="modal-info-row" id="modal-info-row"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// PLACE DATA
+// ═══════════════════════════════════════════════════════
+const places = {
+  arashiyama:      { title:'Foresta di bambù di Arashiyama', tag:'Kyoto · Gio 14 Mag · 07:00', desc:"Una delle immagini più iconiche del Giappone: alti fusti di bambù che si chiudono a volta sopra un sentiero tranquillo. All'alba è magica — quasi nessuno e una luce filtrata verdissima. La foresta è a pochi passi dal tempio Tenryu-ji e dal fiume Oi.", time:'Arrivo alle 07:00 — ~40 min', cost:'Gratuito', wiki:'Arashiyama', maps_q:'Arashiyama+Bamboo+Grove+Kyoto', color:'#1a3020' },
+  tenryuji:        { title:'Tenryu-ji', tag:'Kyoto · Gio 14 Mag · 08:00', desc:"Tempio principale della scuola Rinzai dello Zen, fondato nel 1339. Il giardino paesaggistico — uno dei più antichi del Giappone — è un capolavoro di pietra, stagno e pini contorti con Arashiyama sullo sfondo. Patrimonio UNESCO.", time:'~1h di visita', cost:'~€3', wiki:'Tenryu-ji', maps_q:'Tenryu-ji+Kyoto', color:'#1e2a10' },
+  kinkakuji:       { title:"Kinkakuji — Padiglione d'oro", tag:'Kyoto · Gio 14 Mag · 13:15', desc:"Il Padiglione d'oro è il simbolo di Kyoto. I due piani superiori sono completamente ricoperti di foglia d'oro e si rispecchiano nello stagno circostante. Costruito come villa per il 3° shogun Ashikaga Yoshimitsu.", time:'~1h di visita', cost:'~€3', wiki:'Kinkaku-ji', maps_q:'Kinkaku-ji+Kyoto', color:'#2a1e04' },
+  fushimi:         { title:'Fushimi Inari-taisha', tag:'Kyoto · Ven 15 Mag · 06:00', desc:"Migliaia di torii arancioni si snodano per 4 km su una collina boscosa. Dedicato alla dea del riso Inari, il santuario è aperto 24h. All'alba è silenzioso e avvolto nella nebbia — uno dei momenti fotograficamente più potenti dell'intero viaggio.", time:'Arrivo alle 06:00 — ~2h', cost:'Gratuito', wiki:'Fushimi_Inari-taisha', maps_q:'Fushimi+Inari+Shrine+Kyoto', color:'#3a0e04' },
+  nishiki:         { title:'Nishiki Market', tag:'Kyoto · Ven 15 Mag · 09:00', desc:'Soprannominato "la cucina di Kyoto", è un mercato coperto lungo 400 metri nel cuore della città. Bancarelle di tofu fritto, tsukemono, dango, polpi su stecco, wagashi e matcha.', time:'~45 min — aperto dalle 9:00', cost:'Gratuito (food €2–5 a pezzo)', wiki:'Nishiki_Market', maps_q:'Nishiki+Market+Kyoto', color:'#10182a' },
+  kiyomizudera:    { title:'Kiyomizu-dera', tag:'Kyoto · Ven 15 Mag · 11:00', desc:"Tempio buddista dell'VIII secolo aggrappato alla montagna Otowa. La grande terrazza in legno di hinoki — costruita senza un chiodo — si affaccia su Kyoto tra ciliegi e aceri.", time:'~2h inclusa Ninenzaka', cost:'~€3', wiki:'Kiyomizu-dera', maps_q:'Kiyomizu-dera+Kyoto', color:'#1e0a2a' },
+  nara:            { title:'Parco di Nara', tag:'Nara · Sab 16 Mag · 10:50', desc:"Oltre 1.200 cervi sika vagano liberi per il parco, considerati sacri messaggeri degli dei shintoisti. Si lasciano avvicinare e nutrire con cracker appositi (shika senbei).", time:'~45 min nel parco', cost:'Gratuito (senbei ~€1.5)', wiki:'Nara_Park', maps_q:'Nara+Park+deer+Japan', color:'#0e2410' },
+  todaiji:         { title:'Todai-ji', tag:'Nara · Sab 16 Mag · 11:30', desc:"Il tempio di Todai-ji ospita il Grande Buddha di bronzo (Daibutsu) alto 15 metri — la più grande statua di bronzo coperta al mondo. Fondato nel 752, Patrimonio UNESCO.", time:'~1h di visita', cost:'~€4', wiki:'Todai-ji', maps_q:'Todai-ji+Nara+Japan', color:'#241408' },
+  osaka_castle:    { title:'Osaka Castle', tag:'Osaka · Dom 17 Mag · 09:30', desc:"Il castello di Osaka, costruito da Toyotomi Hideyoshi nel 1583, domina un parco immenso con fossati e mura di pietra. L'interno è un museo sulla storia dell'unificazione del Giappone.", time:'~2h castello + parco', cost:'~€4', wiki:'Osaka_Castle', maps_q:'Osaka+Castle+Japan', color:'#08102a' },
+  dotonbori:       { title:'Dotonbori', tag:'Osaka · Lun 18 Mag · 08:00', desc:"Il cuore pulsante di Osaka: un canale fiancheggiato da insegne al neon e il celebre cartellone del nuotatore Glico. Di mattina la luce è perfetta per le foto; di sera il neon si riflette sull'acqua.", time:'Visita libera — meglio mattina o sera', cost:'Gratuito', wiki:'Dotonbori', maps_q:'Dotonbori+Osaka+Japan', color:'#1a0820' },
+  minoh_waterfall: { title:'Cascata di Minoh (箕面大滝)', tag:'Minoh · Mar 19 Mag · 10:30', desc:"Una cascata di 33 metri immersa in una foresta di aceri, raggiungibile con una passeggiata di 2.7 km dal centro di Minoh. In maggio il bosco è verde intenso; in autunno diventa un tappeto di rosso e arancio. Il sentiero costeggia un ruscello e passa tra negozietti tradizionali.", time:'~2h A/R dal centro di Minoh', cost:'Gratuito', wiki:'Minoo_Park', maps_q:'Minoh+Waterfall+Osaka+Japan', color:'#0e2010' },
+  minoh_town:      { title:'Minoh — Negozietti e Momiji Tempura', tag:'Minoh · Mar 19 Mag · 12:00', desc:"La strada principale di Minoh è fiancheggiata da decine di piccoli negozi artigianali. La specialità locale è la momiji no tempura: foglie di acero conservate per un anno in acqua salata e poi fritte in pastella dolce. Bizzarra, croccante e deliziosa.", time:'Visita libera — ~1h30', cost:'Momiji tempura ~€1–2', wiki:'Minoo,_Osaka', maps_q:'Minoh+Station+Osaka+shopping+street', color:'#1a2a08' },
+  chureito:        { title:'Chureito Pagoda & Monte Fuji', tag:'Hakone/Fuji · Gio 21 Mag · 09:30', desc:"Una delle fotografie più replicate del Giappone: la pagoda a cinque piani di Chureito si staglia davanti al Monte Fuji. Raggiungerla richiede 398 gradini — la vista vale tutto.", time:'~1h inclusa salita', cost:'Gratuito', wiki:'Mount_Fuji', maps_q:'Chureito+Pagoda+Fujiyoshida+Japan', color:'#081020' },
+  owakudani:       { title:'Owakudani', tag:'Hakone · Gio 21 Mag · 14:15', desc:"Valle vulcanica attiva sul monte Hakone, raggiungibile con la funivia. Le fumarole di zolfo emergono dal terreno, e qui si vendono le kuro tamago — uova bollite nel geyser con il guscio diventato nero.", time:'~1h', cost:'Funivia nel Hakone Pass · Uova ~€2', wiki:'Owakudani', maps_q:'Owakudani+Hakone+Japan', color:'#1e1208' },
+  sensoji:         { title:'Senso-ji', tag:'Tokyo · Ven 22 Mag · 08:30', desc:"Il tempio buddista più antico di Tokyo, fondato nel 628 d.C. La grande lanterna rossa del Kaminarimon è una delle immagini più fotografate del Giappone. Di prima mattina l'atmosfera è raccolta e quasi mistica.", time:'Arrivo alle 08:30 — ~1h', cost:'Gratuito', wiki:'Senso-ji', maps_q:'Senso-ji+Asakusa+Tokyo', color:'#280808' },
+  meiji:           { title:'Meiji Jingu', tag:'Tokyo · Sab 23 Mag · 13:00', desc:"Santuario shintoista immerso in una foresta artificiale di 70 ettari nel cuore di Harajuku. Il percorso alberato crea un contrasto surreale con la metropoli circostante.", time:'~1h', cost:'Gratuito', wiki:'Meiji_Shrine', maps_q:'Meiji+Shrine+Tokyo+Japan', color:'#0a1e08' },
+  shibuya:         { title:'Shibuya Crossing', tag:'Tokyo · Sab 23 Mag · 09:30', desc:"L'incrocio pedonale più trafficato del mondo: fino a 3.000 persone attraversano contemporaneamente da ogni direzione. Di notte il neon delle insegne trasforma tutto in cinema.", time:'Visita libera — ora di punta alle 9:30 o 18:00', cost:'Gratuito · Shibuya Sky ~€13', wiki:'Shibuya_Scramble_Crossing', maps_q:'Shibuya+Crossing+Tokyo+Japan', color:'#08081e' },
+  teamlab:         { title:'teamLab Planets TOKYO', tag:'Tokyo · Dom 24 Mag · 10:30', desc:"Un museo di arte digitale immersiva a Toyosu in cui si cammina a piedi nudi attraverso installazioni di luce, acqua e proiezioni che reagiscono ai visitatori. Prenotazione obbligatoria.", time:'~1h30 di visita', cost:'~€20 · Prenota su teamlab.art', wiki:'TeamLab', maps_q:'teamLab+Planets+TOKYO+Toyosu', color:'#04041a' },
+};
+
+// ═══════════════════════════════════════════════════════
+// IMAGE LOADER — Wikipedia REST API (CORS: *)
+// Works from file:// because the API sends Access-Control-Allow-Origin: *
+// ═══════════════════════════════════════════════════════
+const imgCache = {};
+
+function getWikiImage(wikiTitle, size, callback) {
+  // Cache the base thumbnail URL (without size), swap size per request
+  const baseKey = wikiTitle;
+
+  function deliver(baseSrc) {
+    if (!baseSrc) { callback(null); return; }
+    const sized = baseSrc.replace(/\/\d+px-/, '/' + size + 'px-');
+    callback(sized);
+  }
+
+  if (imgCache[baseKey] !== undefined) {
+    deliver(imgCache[baseKey]);
+    return;
+  }
+
+  const url = 'https://en.wikipedia.org/api/rest_v1/page/summary/'
+    + encodeURIComponent(wikiTitle.replace(/ /g, '_'));
+
+  fetch(url, { cache: 'force-cache' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      const src = (data && data.thumbnail && data.thumbnail.source) || null;
+      imgCache[baseKey] = src;
+      deliver(src);
+    })
+    .catch(() => { imgCache[baseKey] = null; callback(null); });
+}
+
+// ═══════════════════════════════════════════════════════
+// PLACE CARD SETUP
+// ═══════════════════════════════════════════════════════
+function setCardImage(card, src, color) {
+  const skel = card.querySelector('.place-skeleton');
+  if (!src) {
+    if (skel) {
+      skel.style.animation = 'none';
+      skel.style.background = 'linear-gradient(135deg,' + color + ',rgba(255,255,255,.06))';
+    }
+    return;
+  }
+  const img = new Image();
+  img.className = 'place-img';
+  img.alt = '';
+  img.onload = () => {
+    if (skel) skel.remove();
+    card.insertBefore(img, card.querySelector('.place-overlay'));
+  };
+  img.onerror = () => {
+    if (skel) { skel.style.animation = 'none'; skel.style.background = color; }
+  };
+  img.src = src;
+}
+
+function setupCard(card) {
+  const id = card.dataset.id;
+  const p  = places[id];
+  if (!p) return;
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', p.title);
+  card.addEventListener('click', () => openModal(id));
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(id); } });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      obs.unobserve(card);
+      getWikiImage(p.wiki, 400, src => setCardImage(card, src, p.color));
+    });
+  }, { rootMargin: '400px' });
+  obs.observe(card);
+}
+
+document.querySelectorAll('.place-card').forEach(setupCard);
+
+// ═══════════════════════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════════════════════
+function openModal(id) {
+  const p = places[id];
+  if (!p) return;
+
+  document.getElementById('modal-tag').textContent   = p.tag;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent  = p.desc;
+  document.getElementById('modal-info-row').innerHTML =
+    '<div><div class="modal-info-label">Orario</div><div class="modal-info-val">' + p.time + '</div></div>' +
+    '<div><div class="modal-info-label">Costo</div><div class="modal-info-val">'  + p.cost + '</div></div>';
+
+  const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.maps_q);
+  const wikiUrl = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(p.wiki);
+  document.getElementById('modal-actions').innerHTML =
+    '<a class="modal-btn modal-btn-primary" href="' + mapsUrl + '" target="_blank" rel="noopener noreferrer">&#128205; Apri in Google Maps</a>' +
+    '<a class="modal-btn modal-btn-sec"     href="' + wikiUrl + '" target="_blank" rel="noopener noreferrer">&#128214; Wikipedia</a>';
+
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-bg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalBg(e) {
+  if (e.target === document.getElementById('modal-bg')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ═══════════════════════════════════════════════════════
+// REVEAL ANIMATIONS
+// ═══════════════════════════════════════════════════════
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.day-card,.place-card,.cost-card,.total-card,.food-item,.practical-card')
+        .forEach(el => revealObs.observe(el));
+
+// ═══════════════════════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════════════════════
+function goTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+const NAV_IDS  = ['volo-andata','kyoto','osaka','tokyo','costi','cibo','pratico'];
+const NAV_BTNS = document.querySelectorAll('.nav-btn');
+let navTick = false;
+window.addEventListener('scroll', () => {
+  if (navTick) return;
+  navTick = true;
+  requestAnimationFrame(() => {
+    let cur = '';
+    NAV_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 130) cur = id;
+    });
+    NAV_BTNS.forEach((b, i) => b.classList.toggle('active', NAV_IDS[i] === cur));
+    navTick = false;
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
