@@ -1,0 +1,16 @@
+{
+  "name": "Spese personali",
+  "short_name": "Spese",
+  "description": "Gestione delle spese quotidiane, offline e privata.",
+  "start_url": "spese.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e0d0b",
+  "theme_color": "#0e0d0b",
+  "lang": "it",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
